@@ -1,3 +1,9 @@
+# term-lyrics
+# Copyright 2025 DaarcyDev
+# Modificaciones: Copyright 2026 DairoDev
+#
+# Licencia MIT — ver LICENSE en la raíz del proyecto.
+
 import subprocess
 from pyfiglet import Figlet
 import pyfiglet
@@ -7,8 +13,8 @@ import shutil
 
 def get_current_song():
     try:
-        artist = subprocess.check_output(["playerctl", "--player=spotify", "metadata", "xesam:artist"]).decode().strip()
-        title = subprocess.check_output(["playerctl", "--player=spotify", "metadata", "xesam:title"]).decode().strip()
+        artist = subprocess.check_output(["playerctl", "--player=brave", "metadata", "xesam:artist"]).decode().strip()
+        title = subprocess.check_output(["playerctl", "--player=brave", "metadata", "xesam:title"]).decode().strip()
         return artist, title
     except subprocess.CalledProcessError:
         return None, None
@@ -16,14 +22,14 @@ def get_current_song():
 
 def get_song_duration():
     try:
-        length_us = int(subprocess.check_output(["playerctl", "--player=spotify", "metadata", "mpris:length"]).decode().strip())
+        length_us = int(subprocess.check_output(["playerctl", "--player=brave", "metadata", "mpris:length"]).decode().strip())
         return length_us / 1_000_000
     except subprocess.CalledProcessError:
         return None
 
 def get_song_position():
     try:
-        position = float(subprocess.check_output(["playerctl", "position", "--player=spotify"]).decode().strip())
+        position = float(subprocess.check_output(["playerctl", "position", "--player=brave"]).decode().strip())
         return position
     except subprocess.CalledProcessError:
         return 0.0
